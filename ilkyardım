@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İlk Yardım Quiz - 50 Soru (7-8. Sınıf)</title>
+    <title>İlk Yardım Quiz - 25 Soru (7-8. Sınıf)</title>
     <style>
         * {
             margin: 0;
@@ -286,37 +286,12 @@
             { question: "21. Kalp kriziinde kişiyi nasıl yatırmalı?", options: ["Yüz üstü", "Sırt üstü ve dinlenme", "Yan tarafı", "Oturmuş şekilde"], correct: 1 },
             { question: "22. Astım atağında hastaya ne verilir?", options: ["Soğuk su", "İnhalatör (pump)", "Sıcak çay", "Ekmek"], correct: 1 },
             { question: "23. Bilinci kapalı kişiyi nasıl tutmalı?", options: ["Hareket ettirmek", "Yan tarafa yatırmak", "Sırt üstü yatırmak", "Ayakta tutmak"], correct: 1 },
-            { question: "24. Koşullu gazlı yarada ne sürülür?", options: ["Yağ", "Nemli steril gaze", "Çikolata", "Süt"], correct: 1 },
-            { question: "25. Trafik kazasında ilk yapılması gereken nedir?", options: ["Araçları taşımak", "Güvenlik sağlayıp ambulans çağırmak", "Yaralıyı hareket ettirmek", "Polis çağırma"], correct: 1 },
-            { question: "26. Diyabetik kişinin şeker düşüğünde ne yapmalı?", options: ["İnsülin vermek", "Şeker / bisküvi vermek", "Beslenme yapmamak", "Beklemek"], correct: 1 },
-            { question: "27. Gözde yabancı cisim varsa ne yapmalı?", options: ["Güçlü fırçalama", "Temiz su ile iyice duşlama", "Kaşıma", "Masöz tuşu"], correct: 1 },
-            { question: "28. Acil durumda kişinin nabzını nerede kontrol ederiz?", options: ["Bacakta", "Boyunda veya bileğinde", "Göğüste", "Kulakta"], correct: 1 },
-            { question: "29. Yanık yüzeyine ne sürülmemelidir?", options: ["Soğuk su", "Yağ veya tereyağ", "Buz", "Steril gaze"], correct: 1 },
-            { question: "30. Düşen kişinin başı kanamıyor ama yaralı görünüyor. Ne yapmalı?", options: ["Beklemek", "Hemen hastaneye götürmek", "Masaj yapmak", "Kimya uygulamak"], correct: 1 },
-            { question: "31. Ağır basılı bir kol yaralanmasında ilk yardım nedir?", options: ["Hareket ettirmek", "Steril gazle basınç ve sabitleme", "Masaj", "Su dökme"], correct: 1 },
-            { question: "32. Birey bayılınca ağzından köpük çıkarsa ne anlaş?", options: ["Normal", "Epilepsi atağı olabilir", "Su içme işareti", "Açlık işareti"], correct: 1 },
-            { question: "33. Bacak kırığında ayakkabı çıkartılmalı mı?", options: ["Evet, hemen", "Hayır, sabitleme yapıldıktan sonra", "Sadece kırmızı ayakkabılar", "Yarısı çıkartılmalı"], correct: 1 },
-            { question: "34. Bağırsaklar dışarı çıkmış yarada ne yapmalı?", options: ["Geri koymaya çalışmak", "Steril nemli bez ile kapatmak", "Direkt dokunmak", "Masaj yapmak"], correct: 1 },
-            { question: "35. İnhale zehir (gaz) inhalasyonunda ne yapmalı?", options: ["Masaj yapmak", "Taze hava ortamına çıkarmak", "İlacı içirmek", "Beslenme yapmak"], correct: 1 },
-            { question: "36. Ağız yaralanmasında ilk adım nedir?", options: ["Sulamak", "Steril gaze ile basınç", "Masaj", "Yağ sürme"], correct: 1 },
-            { question: "37. Göğüs yaralanmasında ne yapılır?", options: ["Hareket ettirme", "Sıkı bağlama ve dinlenme", "Masaj", "Soğuk su"], correct: 1 },
-            { question: "38. Zehirli bitkiyi yemiş birinin ilk yardımı nedir?", options: ["Beklemek", "Aktif kömür veya acil servise gitme", "Çalışmak", "Masaj yapmak"], correct: 1 },
-            { question: "39. Kulakta kulak ardısı varsa ne yapmalı?", options: ["Temizletmek", "Tıbbi müdahaleyi bekleme", "Çıkarmaya çalışmak", "Sulamak"], correct: 1 },
-            { question: "40. Zoonotik hastalık şüphesinde ne yapmalı?", options: ["Dokunmak", "Eldiven takıp doktor çağırmak", "Temizlemek", "Beklemek"], correct: 1 },
-            { question: "41. Boğaz ağrısı ve ateşte ilk yapılması gereken nedir?", options: ["Antrenman", "Dinlenme ve ılık su içme", "Masaj", "Soğuk su"], correct: 1 },
-            { question: "42. Çocuğun ağzından yabancı cisim düşmüşse ne yapmalı?", options: ["Çıkarmaya çalışmak", "Doktor çağırmak", "Kaşıma", "Yemek vermek"], correct: 1 },
-            { question: "43. Ayakta bulantı ve baş dönmesi varsa ne yapmalı?", options: ["Koşmak", "Oturup dinlenmek", "İçmek", "Yemek"], correct: 1 },
-            { question: "44. Kemik protezisini ne kadar sürede çıkartmalı?", options: ["24 saat", "2-3 saatlik aralarla", "Hiç çıkartmama", "1 gün"], correct: 1 },
-            { question: "45. Ağır kan kaybında kişi nasıl tutulmalı?", options: ["Oturacak", "Bacakları yüksek tutarak yatar duruş", "Ayakta", "Eğik pozisyon"], correct: 1 },
-            { question: "46. Göz travmasında kişi nasıl korunmalı?", options: ["Göz açma", "Göz kapalı ve karanlık ortamda", "Işık altında", "Masöz tuşu"], correct: 1 },
-            { question: "47. Parmaklarda uyuşma varsa ne yapmalı?", options: ["Masaj", "Doktor muayenesi", "Bekleme", "Hareket ettirme"], correct: 1 },
-            { question: "48. Kas çekilmesinde ne yapılır?", options: ["Hareket ettirme", "İstirahate ve buz uygulaması", "Masaj", "Ağrı kesici"], correct: 1 },
-            { question: "49. Enfeksiyon belirtileri nelerdir?", options: ["Renk değişimi", "Ateş, kızarıklık ve ağrı", "Gözde değişim", "Sesin değişimi"], correct: 1 },
-            { question: "50. Acil durumda yardımcı olurken ilk duyguumuz ne olmalı?", options: ["Korku", "Soğukkanlılık ve hızlılık", "Öfke", "Merakıllık"], correct: 1 }
+            { question: "24. Trafik kazasında ilk yapılması gereken nedir?", options: ["Araçları taşımak", "Güvenlik sağlayıp ambulans çağırmak", "Yaralıyı hareket ettirmek", "Polis çağırma"], correct: 1 },
+            { question: "25. Acil durumda yardımcı olurken ilk duyguumuz ne olmalı?", options: ["Korku", "Soğukkanlılık ve hızlılık", "Öfke", "Merakıllık"], correct: 1 }
         ];
 
         let currentQuestion = 0;
-        let answers = new Array(50).fill(null);
+        let answers = new Array(25).fill(null);
         let showResults = false;
 
         function loadQuestion() {
@@ -335,11 +310,11 @@
                 `;
             });
 
-            const progressPercent = ((currentQuestion + 1) / 50) * 100;
+            const progressPercent = ((currentQuestion + 1) / 25) * 100;
             document.getElementById('progress-fill').style.width = progressPercent + '%';
 
             content.innerHTML = `
-                <div class="question-number">Soru ${currentQuestion + 1} / 50</div>
+                <div class="question-number">Soru ${currentQuestion + 1} / 25</div>
                 <div class="question-text">${quiz.question}</div>
                 <div class="options">${optionsHTML}</div>
                 <div class="buttons">
@@ -355,7 +330,7 @@
         }
 
         function nextQuestion() {
-            if (currentQuestion < 49) {
+            if (currentQuestion < 24) {
                 currentQuestion++;
                 loadQuestion();
             } else {
@@ -378,7 +353,7 @@
                 }
             });
 
-            const percentage = (correctCount / 50) * 100;
+            const percentage = (correctCount / 25) * 100;
             const progressPercent = 100;
             document.getElementById('progress-fill').style.width = progressPercent + '%';
 
@@ -404,7 +379,7 @@
                 <div class="results">
                     <div class="emoji">${emoji}</div>
                     <h2>Tebrikler!</h2>
-                    <div class="score">${correctCount}/50</div>
+                    <div class="score">${correctCount}/25</div>
                     <div class="score-bar">
                         <div class="score-fill" style="width: ${percentage}%"></div>
                     </div>
