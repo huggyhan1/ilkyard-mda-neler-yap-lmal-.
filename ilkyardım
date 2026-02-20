@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlk Yardım Quiz - 50 Soru</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #2ecc71;
+            transition: width 0.3s ease;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .question-number {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .option:hover {
+            border-color: #e74c3c;
+            background: #f3f4f6;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .option.selected {
+            border-color: #e74c3c;
+            background: #ffebee;
+        }
+
+        .option.correct {
+            border-color: #2ecc71;
+            background: #f0fdf4;
+        }
+
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-prev {
+            background: #e5e7eb;
+            color: #333;
+        }
+
+        .btn-prev:hover {
+            background: #d1d5db;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 3.5rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+
+        .score-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .btn-restart {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 15px 50px;
+            font-size: 1.1rem;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .score-bar {
+            width: 100%;
+            height: 15px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+            transition: width 0.5s ease;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn-next {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-container">
+            <div class="header">
+                <h1>🚑 İlk Yardım Quiz</h1>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            <div class="content" id="content">
+                <!-- Quiz içeriği JavaScript tarafından yüklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "1. İlk yardımın tanımı nedir?", options: ["Hastayı tamamen iyileştirmek", "Yaralının hasta olmaması için alınan önlemler", "Acil durumda yaralıya yapılan geçici ve temel yardımlar", "Doktorun hastaya verdiği tedavi"], correct: 2 },
+            { question: "2. Bilinçsiz kişide ilk yapılması gereken nedir?", options: ["Hemen hastaneye götürmek", "Hava yolu açıklığını kontrol etmek", "Ağız yıkamak", "Sıvı içirmek"], correct: 1 },
+            { question: "3. CPR (kardiyopulmoner resüsitasyon) sırasında göğüs kompresyon hızı kaç olmalıdır?", options: ["80-100 kez/dakika", "100-120 kez/dakika", "120-140 kez/dakika", "140-160 kez/dakika"], correct: 1 },
+            { question: "4. Ağır kanama nasıl durdurulur?", options: ["Soğuk su ile yıkamak", "Basınçlı bandaj uygulamak", "Direkt olarak hava tutmak", "Pembe merhem sürmek"], correct: 1 },
+            { question: "5. Kırık kemiğe müdahalede ilk adım nedir?", options: ["Masaj yapmak", "Harekete zorlama", "Sabitlenmesi sağlamak", "Ortez takılması"], correct: 2 },
+            { question: "6. Kafa travması geçiren hastaya ne yapılmalı?", options: ["Yatırma ve baş altına yastık koymama", "Masaj yapmak", "Hareket ettirmek", "Baş kaldırmak"], correct: 0 },
+            { question: "7. Çoklu travma durumunda ilk olarak hangi bölge kontrol edilir?", options: ["Bacak", "Kol", "Hava yolu", "Karın"], correct: 2 },
+            { question: "8. Boğulma durumunda ilk yapılması gereken nedir?", options: ["Sıvı çıkartmak", "Hava yolunu açmak", "Anında CPR", "Sırt üstü yatırarak vücut masajı yapmak"], correct: 1 },
+            { question: "9. Yanık derecelerinden en hafif olanı hangisidir?", options: ["Birinci derece", "İkinci derece", "Üçüncü derece", "Dördüncü derece"], correct: 0 },
+            { question: "10. Yanmış bölgeye ilk 15 dakika içinde ne uygulanmalı?", options: ["Tuz suyu", "Soğuk su", "Sıcak su", "Yağ"], correct: 1 },
+            { question: "11. Bacak kırığında nasıl bir ek yardımcı araç kullanılır?", options: ["Omuz askısı", "Ekstremite eklemi sabitlenmesi", "Boyun tutuşu", "Bel kemeri"], correct: 1 },
+            { question: "12. Zehir alma durumunda hastaya ilk olarak ne verilmelidir?", options: ["Hemen antibiyotik", "Aktif kömür (eğer bilinçliyse)", "Mide yıkama", "Uyku ilacı"], correct: 1 },
+            { question: "13. Hipotermide hasta nasıl ısıtılmalı?", options: ["Hızlı ve yoğun ısıtma", "Çok sıcak su", "Yumuşak, kademeli ısıtma", "Sauna"], correct: 2 },
+            { question: "14. Hipertermide (yüksek ateş) hasta nasıl iyileştirilir?", options: ["Hızlı ısıtma", "Soğuk bantlama ve su ile soğutma", "Sıcak oda", "Ağır battaniye"], correct: 1 },
+            { question: "15. Kordon çevirme mı öncelik?", options: ["Evet", "Hayır, hava yolu açılması", "Her ikisi aynı anda", "Hastaya sıvı verilmesi"], correct: 1 },
+            { question: "16. Diyabetik acil durumunda hipoglisemide ne yapılmalı?", options: ["İnsülin vermek", "Şeker verme (eğer bilinçliyse)", "Uyumak", "Hemen hastaneye gitmek"], correct: 1 },
+            { question: "17. Göz yaralanmasında ilk müdahale nedir?", options: ["Göze basınç uygulamak", "Göz pedi ile düzenli kapatma", "Masaj", "Kolyum damlatma"], correct: 1 },
+            { question: "18. Kulaktan kanama durumunda ne yapılmalı?", options: ["Pamukla doldurma", "Steril gaze ile hafif kapatma", "Sıcak su", "Alkol"], correct: 1 },
+            { question: "19. Titremeyle gelen ateş atağında ne yapılmalı?", options: ["Acaba soğutmak", "Ateş atağı geçinceye kadar bekleme", "Sıcak içgüdü sağlamak", "Harekete zorlama"], correct: 2 },
+            { question: "20. Bulaşıcı hastalık şüphesinde ilk yardımcı neler yapmalı?", options: ["Koruma ekipmanı kullanma", "Cerrahi maske takma", "Eldiven ve göz koruması", "Hepsi"], correct: 3 },
+            { question: "21. Yüksek yerden düşüş sonrası ilk kontrol nedir?", options: ["Bacak hareketi", "Bilinci", "Hava yolu", "Nabız"], correct: 2 },
+            { question: "22. Ağız yaralanmasında ne yapılmalı?", options: ["Hemen dil cerrahı çağırma", "Steril gazele basınç uygulamak", "Soğuk su", "Hareket ettirmek"], correct: 1 },
+            { question: "23. Burunda kanama durumunda kişi nasıl oturmalı?", options: ["Yatar duruş", "Başı geriye yatırarak", "Başı öne eğerek", "Yüksekçe"], correct: 2 },
+            { question: "24. Parmak kopmasında kopan parça nasıl saklanmalı?", options: ["Kuruda", "Tuz içinde", "Steril bez ile sarılı, soğuk yerde", "Cep içinde"], correct: 2 },
+            { question: "25. Trafik kazasında ilk yapılması gereken nedir?", options: ["Araçları taşımak", "Yaralıyı hareket ettirmek", "Güvenlik önlemleri almak ve yardım çağırmak", "Polis çağırmak"], correct: 2 },
+            { question: "26. Alerjik reaksiyonda adrenalin enjeksiyonunun amacı nedir?", options: ["Ağrıyı azaltmak", "Nefes almayı kolaylaştırmak", "Kaşıntıyı durdurmak", "Şişmeyi azaltmak"], correct: 1 },
+            { question: "27. Epilepsi atağ��nda ne yapılmalı?", options: ["Diş arasına tahta koymak", "Ağızdan su içirmek", "Güvenli alana almak ve yan tarafa yatırmak", "Kısıtlama yapmak"], correct: 2 },
+            { question: "28. Kalp krizi şüphesinde ilk yardımcı neler yapmalı?", options: ["Hasta kesinlikle hareket ettirmeme", "Rahat ve temiz hava sağlama", "Tuz şekeri çiğnetme", "Hepsi yapılmalı"], correct: 3 },
+            { question: "29. İnme/Felç geçiren hastaya ilk 3 saatte ne yapılmalı?", options: ["Masaj", "Fizik terapi", "Acilne hızlı ulaştırma", "Yağ sürme"], correct: 2 },
+            { question: "30. Zehir almış kişiye ağız yolu ile verilen ilk ilacın adı nedir?", options: ["Penisilin", "Aktif kömür", "Aspirin", "İnsülin"], correct: 1 },
+            { question: "31. Bağlama (tournike) ne zaman uygulanır?", options: ["Her kanama için", "Sadece bacak kanması", "Hayat tehdit eden ağır kanama için", "Burun kanamasında"], correct: 2 },
+            { question: "32. Çıkık kolu nasıl sabitlenmeli?", options: ["Serbest bırakma", "Omuz askısı ile sabitleme", "Masaj yapma", "Hareket ettirme"], correct: 1 },
+            { question: "33. Ağır baş yaralanmasında hastaya nasıl bakılmalı?", options: ["Yüz üstü yatırma", "Yan tarafa yatırma", "Sırt üstü yatırarak baş kaldırma", "Oturması istenme"], correct: 1 },
+            { question: "34. Koşullu gazlı kanama durumunda ne sürülür?", options: ["Merhemi", "Alkol", "Fizyolojik serum ile islak gazlı bez", "Çimento"], correct: 2 },
+            { question: "35. Bağırsakları dışarı çıkmış yaralanmada ne yapılmalı?", options: ["Geri koymaya çalışmak", "Steril nemli bez ile kapatma", "Direkt dış etki", "Masaj"], correct: 1 },
+            { question: "36. İnhale toksik gaz sonrası ilk yapılması gereken?", options: ["Maske takma", "Taze hava ortamına çıkarmak", "İlacı içirmek", "Acil masaj"], correct: 1 },
+            { question: "37. Hayvanlar tarafından ısırıldığında ilk müdahale?", options: ["Antibiyotik vermek", "Isırılan bölgeyi sabunlu su ile yıkamak", "Beklemek", "Sulamak"], correct: 1 },
+            { question: "38. Yüksek voltaj elektrik çarpmasında hastaya yaklaşılır mı?", options: ["Evet", "Hayır, elektrik kaynağını kapatmak", "Metalik alet kullan", "Dokunmak"], correct: 1 },
+            { question: "39. Trombolizin amacı nedir?", options: ["Kanama durdurmak", "Trombus (pıhtı) çözmek", "Nabız artırmak", "Ağrı azaltmak"], correct: 1 },
+            { question: "40. Ağır astım atağında hastaya ne verilir?", options: ["Soğuk su", "Bronkodilatör inhalatör", "Yağ", "Vitamin"], correct: 1 },
+            { question: "41. Acil durumda 112'ye bağlandığında ilk verilen bilgi ne olmalı?", options: ["Hastanın adı", "Kesin tanı", "Konum ve kaç yaralı olduğu", "Adresi"], correct: 2 },
+            { question: "42. Beyin ölümü belirtileri arasında hangisi yoktur?", options: ["Beyin sapı reflekslerinin kaybı", "Solunum refleksi yok", "Kalp atışı devam", "Göz hareketleri yok"], correct: 2 },
+            { question: "43. Yanık yarasında tazı veya kaynak uygulanır mı?", options: ["Evet", "Hayır, steril gazlı bez ile kapatma", "Biraz kullanılabilir", "Soğuk tutma"], correct: 1 },
+            { question: "44. Kemik protezisinde (ortez) kullanma süresinde doğru olan nedir?", options: ["24 saatler", "8-10 saat aralık", "Kaynağa göre değişir", "2-3 gün"], correct: 1 },
+            { question: "45. Bacak kırığında nabız kontrolü hangi yerde yapılır?", options: ["Pazı", "Bileği", "Ayak dorsali", "Kasık"], correct: 2 },
+            { question: "46. Göz içine yabancı cisim girdiğinde ne yapılmalı?", options: ["Kızarmak", "Temiz su ile duşlamak", "Tampon basınç", "Kendinden çıkaracağını bekleme"], correct: 1 },
+            { question: "47. Bebekte boğulma durumunda yapılması gereken nedir?", options: ["Ağız-burun resüsitasyon", "Göğüs kompresyonu", "Başa vuru", "Endotrekeal intubasyon"], correct: 0 },
+            { question: "48. Pneumotoraksda (göğüs boşluğunda hava) klinikal bulgu hangisidir?", options: ["Ağır kanama", "Nefes darlığı ve göğüs ağrısı", "Parazitler", "Yanıklık"], correct: 1 },
+            { question: "49. Akciğer embolisinde (PE) hastaya yapılması gereken ilk yardım nedir?", options: ["Yüksekçe oturma pozisyonu ve oksijen", "Masaj", "Taze hava", "Başın dönmesi"], correct: 0 },
+            { question: "50. Ölüm haberi verilen ailenin destek ihtiyacı nedir?", options: ["Sessiz kalma", "Empatik davranış ve profesyonel destek", "Hemen görevleri hatırlatma", "Kimse ile konuşmama"], correct: 1 }
+        ];
+
+        let currentQuestion = 0;
+        let answers = new Array(50).fill(null);
+        let showResults = false;
+
+        function loadQuestion() {
+            const quiz = quizData[currentQuestion];
+            const content = document.getElementById('content');
+            
+            let optionsHTML = '';
+            quiz.options.forEach((option, index) => {
+                const isSelected = answers[currentQuestion] === index;
+                optionsHTML += `
+                    <label class="option ${isSelected ? 'selected' : ''}">
+                        <input type="radio" name="option" value="${index}" ${isSelected ? 'checked' : ''} 
+                               onchange="selectOption(${index})">
+                        ${option}
+                    </label>
+                `;
+            });
+
+            const progressPercent = ((currentQuestion + 1) / 50) * 100;
+            document.getElementById('progress-fill').style.width = progressPercent + '%';
+
+            content.innerHTML = `
+                <div class="question-number">Soru ${currentQuestion + 1} / 50</div>
+                <div class="question-text">${quiz.question}</div>
+                <div class="options">${optionsHTML}</div>
+                <div class="buttons">
+                    <button class="btn-prev" onclick="prevQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>← Önceki</button>
+                    <button class="btn-next" onclick="nextQuestion()" ${answers[currentQuestion] === null ? 'disabled' : ''}>Sonraki →</button>
+                </div>
+            `;
+        }
+
+        function selectOption(index) {
+            answers[currentQuestion] = index;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < 49) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showFinalResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function showFinalResults() {
+            let correctCount = 0;
+            quizData.forEach((quiz, index) => {
+                if (answers[index] === quiz.correct) {
+                    correctCount++;
+                }
+            });
+
+            const percentage = (correctCount / 50) * 100;
+            const progressPercent = 100;
+            document.getElementById('progress-fill').style.width = progressPercent + '%';
+
+            let emoji = '😢';
+            let message = 'Daha iyi yapabilirsiniz!';
+            
+            if (percentage >= 90) {
+                emoji = '🏆';
+                message = 'Harika! İlk Yardım bilginiz mükemmel!';
+            } else if (percentage >= 80) {
+                emoji = '🎉';
+                message = 'Çok başarılı! Tebrikler!';
+            } else if (percentage >= 70) {
+                emoji = '👍';
+                message = 'İyi başardınız!';
+            } else if (percentage >= 60) {
+                emoji = '😊';
+                message = 'Orta düzey başarı. Biraz daha çalışmalısınız.';
+            }
+
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <div class="results">
+                    <div class="emoji">${emoji}</div>
+                    <h2>Tebrikler!</h2>
+                    <div class="score">${correctCount}/50</div>
+                    <div class="score-bar">
+                        <div class="score-fill" style="width: ${percentage}%"></div>
+                    </div>
+                    <div class="score-description">${message}</div>
+                    <p style="color: #666; margin: 20px 0; font-size: 1.1rem;">
+                        Başarı Oranı: <strong>${percentage.toFixed(1)}%</strong>
+                    </p>
+                    <button class="btn-restart" onclick="location.reload()">🔄 Yeniden Başla</button>
+                </div>
+            `;
+        }
+
+        // İlk soruyu yükle
+        loadQuestion();
+    </script>
+</body>
+</html>
